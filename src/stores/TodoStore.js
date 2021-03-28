@@ -1,19 +1,19 @@
 import { observable, action, computed } from 'mobx';
 
 class TodoStore {
-    filter = 'all';
-    beforeEditCache = '';
-    idForTodo = 3;
-    todos= [
+    @observable filter = 'all';
+    @observable beforeEditCache = '';
+    @observable idForTodo = 3;
+    @observable todos = [
       {
         'id': 1,
-        'title': 'Finish React Screencast',
+        'title': 'Finish MobX Screencast',
         'completed': false,
         'editing': false,
       },
       {
         'id': 2,
-        'title': 'Take over world',
+        'title': 'Take over MobX world',
         'completed': false,
         'editing': false,
       },
