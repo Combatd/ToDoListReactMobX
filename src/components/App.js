@@ -22,7 +22,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <div className="Todo-container">
-          <input type="text" className="todo-input" placeholder="What needs to be done" ref={this.todoInput} onKeyUp={this.addTodo} />
+          <input type="text" className="todo-input" placeholder="What needs to be done" ref={TodoStore.todoInput} onKeyUp={TodoStore.addTodo} />
 
           <ReactCSSTransitionGroup
             transitionName="fade"
@@ -76,7 +76,7 @@ class App extends Component {
     );
   }
 
-  todoInput = React.createRef();
+  // todoInput = React.createRef();
 
   state = {
     filter: 'all',
@@ -98,94 +98,94 @@ class App extends Component {
     ]
   }
 
-  addTodo = event => {
-    if (event.key === 'Enter') {
-      const todoInput = this.todoInput.current.value;
+  // addTodo = event => {
+  //   if (event.key === 'Enter') {
+  //     const todoInput = this.todoInput.current.value;
 
-      if (todoInput.trim().length === 0) {
-        return;
-      }
+  //     if (todoInput.trim().length === 0) {
+  //       return;
+  //     }
 
-      this.setState((prevState, props) => {
-        let todos = prevState.todos;
-        let idForTodo = prevState.idForTodo + 1;
+  //     this.setState((prevState, props) => {
+  //       let todos = prevState.todos;
+  //       let idForTodo = prevState.idForTodo + 1;
 
-        todos.push({
-          id: idForTodo,
-          title: todoInput,
-          completed: false,
-        });
+  //       todos.push({
+  //         id: idForTodo,
+  //         title: todoInput,
+  //         completed: false,
+  //       });
 
-        return { todos, idForTodo };
-      });
+  //       return { todos, idForTodo };
+  //     });
 
-      this.todoInput.current.value = '';
-    }
-  }
+  //     this.todoInput.current.value = '';
+  //   }
+  // }
 
-  deleteTodo = (index) => {
-    this.setState((prevState, props) => {
-      let todos = prevState.todos;
+  // deleteTodo = (index) => {
+  //   this.setState((prevState, props) => {
+  //     let todos = prevState.todos;
 
-      todos.splice(index, 1);
+  //     todos.splice(index, 1);
 
-      return { todos };
-    });
-  }
+  //     return { todos };
+  //   });
+  // }
 
-  checkTodo = (todo, index, event) => {
-    this.setState((prevState, props) => {
-      let todos = prevState.todos;
-      todo.completed = !todo.completed;
+  // checkTodo = (todo, index, event) => {
+  //   this.setState((prevState, props) => {
+  //     let todos = prevState.todos;
+  //     todo.completed = !todo.completed;
 
-      todos.splice(index, 1, todo);
+  //     todos.splice(index, 1, todo);
 
-      return { todos };
-    });
-  }
+  //     return { todos };
+  //   });
+  // }
 
-  editTodo = (todo, index, event) => {
-    this.setState((prevState, props) => {
-      let todos = prevState.todos;
-      todo.editing = true;
+  // editTodo = (todo, index, event) => {
+  //   this.setState((prevState, props) => {
+  //     let todos = prevState.todos;
+  //     todo.editing = true;
 
-      todos.splice(index, 1, todo);
+  //     todos.splice(index, 1, todo);
 
-      return { todos, beforeEditCache: todo.title };
-    });
-  }
+  //     return { todos, beforeEditCache: todo.title };
+  //   });
+  // }
 
-  doneEdit = (todo, index, event) => {
-    event.persist();
+  // doneEdit = (todo, index, event) => {
+  //   event.persist();
 
-    this.setState((prevState, props) => {
-      let todos = prevState.todos;
-      todo.editing = false;
+  //   this.setState((prevState, props) => {
+  //     let todos = prevState.todos;
+  //     todo.editing = false;
 
-      if (event.target.value.trim().length === 0) {
-        todo.title = prevState.beforeEditCache;
-      } else {
-        todo.title = event.target.value;
-      }
+  //     if (event.target.value.trim().length === 0) {
+  //       todo.title = prevState.beforeEditCache;
+  //     } else {
+  //       todo.title = event.target.value;
+  //     }
 
-      todos.splice(index, 1, todo);
+  //     todos.splice(index, 1, todo);
 
-      return { todos };
-    });
-  }
+  //     return { todos };
+  //   });
+  // }
 
-  cancelEdit = (todo, index, event) => {
-    this.setState((prevState, props) => {
-      let todos = prevState.todos;
+  // cancelEdit = (todo, index, event) => {
+  //   this.setState((prevState, props) => {
+  //     let todos = prevState.todos;
 
-      todo.title = prevState.beforeEditCache;
-      todo.editing = false;
+  //     todo.title = prevState.beforeEditCache;
+  //     todo.editing = false;
 
-      todos.splice(index, 1, todo);
+  //     todos.splice(index, 1, todo);
 
-      return { todos };
-    });
-  }
+  //     return { todos };
+  //   });
+  // }
 
   remaining = () => {
     return this.state.todos.filter(todo => !todo.completed).length;
