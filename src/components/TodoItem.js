@@ -49,6 +49,8 @@ const TodoItem = inject('TodoStore')(observer(props => {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  TodoStore: PropTypes.object.isRequired;
+
   // checkTodo: PropTypes.func.isRequired,
   // editTodo: PropTypes.func.isRequired,
   // doneEdit: PropTypes.func.isRequired,
