@@ -7,9 +7,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'mobx-react';
 import TodoStore from './stores/TodoStore';
 
-// const Root = {
-//     Provider
-// }
+const Root = (
+    <Provider TodoStore={TodoStore} >
+        <App />
+    </Provider>
+)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(Root, document.getElementById('root'));
 registerServiceWorker();
