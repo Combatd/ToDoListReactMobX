@@ -7,9 +7,15 @@ import TodoItem from './TodoItem';
 import TodosCheckAll from './TodosCheckAll';
 import TodosFiltered from './TodosFiltered';
 import TodosClearCompleted from './TodosClearCompleted';
+import { inject, observer } from 'mobx-react';
 
+// inject must be attached to a class declaration (observer)
+@inject('TodoStore')
+@observer
 class App extends Component {
   render() {
+    const { TodoStore } = this.props;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -23,7 +29,7 @@ class App extends Component {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-          {this.todosFiltered().map((todo, index) =>
+          {TodoStore.todos.map((todo, index) =>
             <TodoItem
               key={todo.id}
               todo={todo}
